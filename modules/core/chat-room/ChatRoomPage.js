@@ -18,7 +18,7 @@ const ChatRoomPage = () => {
         if (!user) dispatch(fetchMe());
         if (user) {
             const { rooms } = user;
-            if (!selectedRoom) dispatch(fetchRoom(rooms[0]));
+            if (!selectedRoom) dispatch(fetchRoom({ room: rooms[0] }));
         }
     }, [user]);
 

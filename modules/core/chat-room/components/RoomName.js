@@ -39,7 +39,7 @@ const RoomName = ({ room }) => {
     return (
         <div
             className={room.id === selectedRoom.id ? classes.selected : classes.root}
-            onClick={() => dispatch(fetchRoom(room))}
+            onClick={() => dispatch(fetchRoom({ room }))}
         >
             <span className={classes.roomName}>#</span>
             {room.name}

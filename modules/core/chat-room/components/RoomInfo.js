@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.light,
         borderBottomSize: '1px',
         borderBottomStyle: 'solid',
-        borderBottomColor: theme.palette.primary.main
+        borderBottomColor: theme.palette.primary.main,
+        marginBottom: theme.spacing(2)
     },
     menuButton: {
         marginRight: theme.spacing(2)

@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
 
 const RoomList = () => {
     const classes = useStyles();
-    const { rooms } = useSelector((state) => getAuthData(state)?.user);
+    const { searchedRooms } = useSelector((state) => getAuthData(state));
     return (
         <Grid item sm={4} md={3} lg={2} className={classes.root}>
             <SearchBar />
             <div className={classes.list}>
-                {rooms.map((room) => (
+                {searchedRooms.map((room) => (
                     <RoomName room={room} />
                 ))}
             </div>

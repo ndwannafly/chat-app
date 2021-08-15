@@ -5,7 +5,8 @@ import { AUTH_ME, AUTH_TOKEN } from '@core/auth/constants';
 
 const initial_state = {
     token: null,
-    user: null
+    user: null,
+    searchedRooms: []
 };
 
 export const getAuthData = (state) => state?.core.auth;
@@ -28,16 +29,20 @@ export const fetchMe = asyncAction('AUTH/FETCH_ME', async () => {
     });
 });
 
+export const searchRoom = asyncAction('AUTH/SET_SEARCHED_ROOMS', async ({ searchedRooms }) => searchedRooms);
+
 export default handleActions(
     {
         [fetchToken.START]: () => ({
             token: null,
-            user: null
+            user: null,
+            searchedRooms: []
         }),
 
         [fetchToken.SUCCESS]: (state, { payload }) => ({
             token: payload?.data?.jwt,
-            user: payload?.data?.user
+            user: payload?.data?.user,
+            searchedRooms: payload?.data?.user?.rooms
         }),
 
         [fetchToken.FAILURE]: (state) => ({
@@ -50,12 +55,27 @@ export default handleActions(
         }),
 
         [fetchMe.SUCCESS]: (state, { payload }) => ({
-            user: payload?.data
+            user: payload?.data,
+            searchedRooms: payload?.data?.rooms
         }),
 
         [fetchMe.FAILURE]: (state) => ({
             ...state,
             user: null
+        }),
+
+        [searchRoom.START]: (state) => ({
+            ...state
+        }),
+
+        [searchRoom.SUCCESS]: (state, { payload }) => ({
+            ...state,
+            searchedRooms: payload?.data
+        }),
+
+        [searchRoom.FAILURE]: (state) => ({
+            ...state,
+            searchedRooms: []
         })
     },
     initial_state
