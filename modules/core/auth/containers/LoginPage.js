@@ -86,24 +86,17 @@ const LoginPage = () => {
 
     const { token } = useSelector((state) => getAuthData(state));
 
-    /*
-    const [isError, setIsError] = useState(false);
-*/
     const router = useRouter();
-
-    console.log(username);
 
     useEffect(() => {
         if (token) {
-            window.localStorage.setItem('access_token', token);
+            window.localStorage.setItem('token', token);
             router.push('/chat-room');
         }
-    }, [token]);
+    }, [router, token]);
 
     const loginSubmit = (e) => {
-        console.log('submitted');
         e.preventDefault();
-        console.log(`${username} ${password}`);
         dispatch(fetchToken({ identifier: username, password }));
     };
 
@@ -119,20 +112,17 @@ const LoginPage = () => {
                         <Typography variant="h6" component="p" color="textPrimary" className={classes.welcome}>
                             Welcome Back!
                         </Typography>
-                        <Typography variant="p" component="p">
-                            We're so excited to see you again!
-                        </Typography>
+                        <Typography component="p">We're so excited to see you again!</Typography>
                     </div>
                     <form onSubmit={loginSubmit}>
                         <Container className={classes.form}>
                             <div className={classes.email}>
                                 <Typography variant="h6" component="p">
-                                    Email
+                                    Username
                                 </Typography>
                                 <TextField
-                                    id="email"
-                                    name="Email"
-                                    type="email"
+                                    id="username"
+                                    name="Username"
                                     variant="outlined"
                                     className={classes.textField}
                                     onChange={(event) => setUsername(event.target.value)}
@@ -158,7 +148,7 @@ const LoginPage = () => {
 
                             <div className={classes.register}>
                                 <span>Need an account?</span>
-                                <Link href="./register">
+                                <Link href="/register">
                                     <a>Register</a>
                                 </Link>
                             </div>

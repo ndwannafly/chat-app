@@ -9,31 +9,26 @@ const useStyles = makeStyles((theme) => ({
         color: '#515459',
         justifyContent: 'space-between',
         borderRadius: '5px',
-        margin: '10px'
+        marginBottom: theme.spacing(2)
     },
     input: {
         paddingLeft: '10px',
         fontSize: '20px',
         color: 'white'
     }
-}))
+}));
 
 const SearchBar = () => {
-
     const classes = useStyles();
 
     return (
         <Paper component="form" className={classes.root}>
-            <InputBase
-                className={classes.input}
-                placeholder="Search room"
-            />
-            <IconButton type="submit" className={classes.iconButton} >
+            <InputBase className={classes.input} placeholder="Search room" />
+            <IconButton type="submit" className={classes.iconButton}>
                 <Search />
             </IconButton>
-
         </Paper>
-    )
-}
+    );
+};
 
 export default SearchBar;

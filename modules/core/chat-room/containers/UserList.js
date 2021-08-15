@@ -1,44 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import UserStatus from '@chat-room/components/UserStatus';
+import UserStatus from '@core/chat-room/components/UserStatus';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-const users = [
-    {
-        username: 'user1',
-        isOnline: true
-    },
-    {
-        username: 'user2',
-        isOnline: true
-    },
-    {
-        username: 'user3',
-        isOnline: false
-    },
-    {
-        username: 'user4',
-        isOnline: true
-    },
-    {
-        username: 'user5',
-        isOnline: false
-    },
-    {
-        username: 'user6',
-        isOnline: false
-    },
-    {
-        username: 'user7',
-        isOnline: false
-    },
-    {
-        username: 'user8',
-        isOnline: true
-    }
-];
+import { useSelector } from 'react-redux';
+import { getChatRoom } from '@core/chat-room/reducer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,10 +39,14 @@ const UserPaginate = ({ title, users }) => {
 
 const UserList = () => {
     const classes = useStyles();
+    const {
+        selectedRoom: { users }
+    } = useSelector((state) => getChatRoom(state));
     return (
         <Grid item lg={2} className={classes.root}>
-            <UserPaginate title="ONLINE" users={users.filter((user) => user.isOnline)} />
-            <UserPaginate title="OFFLINE" users={users.filter((user) => !user.isOnline)} />
+            <UserPaginate title="ONLINE" users={users} />
+            {/* <UserPaginate title="ONLINE" users={users.filter((user) => user.isOnline)} /> */}
+            {/* <UserPaginate title="OFFLINE" users={users.filter((user) => !user.isOnline)} /> */}
         </Grid>
     );
 };
