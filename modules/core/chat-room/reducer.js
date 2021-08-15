@@ -2,6 +2,7 @@ import { asyncAction } from '@core/utils/action';
 import axios from 'axios';
 import { handleActions } from 'redux-actions';
 import { ENV_URL } from '@core/chat-room/constants';
+import { createAction } from '@reduxjs/toolkit';
 
 const initial_state = {
     selectedRoom: null

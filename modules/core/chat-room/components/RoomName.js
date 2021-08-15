@@ -32,9 +32,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const selectedRoom = {
+    id: '1'
+};
+
 const RoomName = ({ room }) => {
     const classes = useStyles();
-    const { selectedRoom } = useSelector((state) => getChatRoom(state));
+    // const { selectedRoom } = useSelector((state) => getChatRoom(state));
     const dispatch = useDispatch();
     return (
         <div
