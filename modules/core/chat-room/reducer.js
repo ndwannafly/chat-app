@@ -5,7 +5,7 @@ import { ENV_URL } from '@core/chat-room/constants';
 import { AUTH_TOKEN } from '@core/auth/constants';
 
 const initial_state = {
-    selectedRoom: null
+    selectedRoom: '1'
 };
 
 export const fetchRoom = asyncAction('CHAT_ROOM/FETCH_ROOM', async ({ room }) => {
