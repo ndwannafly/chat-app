@@ -14,7 +14,7 @@ const ChatRoomPage = () => {
     const { selectedRoom } = useSelector((state) => getChatRoom(state));
     const router = useRouter();
 
-    useEffect(() => {
+    /*    useEffect(() => {
         if (!user) dispatch(fetchMe());
         if (user) {
             const { rooms } = user;
@@ -22,12 +22,13 @@ const ChatRoomPage = () => {
         }
     }, [user]);
 
-    if (!selectedRoom) return <>Loading ...</>;
+    if (!selectedRoom) return <>Loading ...</>; */
+
     return (
         <Grid container>
             <RoomList />
-            <MessageContainer />
-            <UserList />
+            {/*            <MessageContainer />
+            <UserList /> */}
         </Grid>
     );
 };
