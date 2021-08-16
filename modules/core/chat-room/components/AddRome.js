@@ -1,23 +1,49 @@
 import React, { useState } from 'react';
-import { Button, Dialog, IconButton, makeStyles, Paper, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, IconButton, makeStyles, Paper, TextField } from '@material-ui/core';
 import { AddBox } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { createRoom, getAuthData, setSearchedRooms } from '@core/auth/reducer';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         border: 'none',
         outlineWidth: '0',
         color: 'white',
-        fontSize: 'large'
+        fontSize: 'large',
+        minHeight: '100%'
     },
-    form: {}
+    form: {},
+    title: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        padding: '0',
+        marginBottom: '30px',
+        '& h2': {
+            fontWeight: '600',
+            color: 'white'
+        }
+    },
+    button: {
+        width: '100%',
+        marginTop: '30px',
+        backgroundColor: '#7382e0'
+    },
+    input: {
+        backgroundColor: theme.palette.primary.main,
+        fontSize: '14px',
+        borderRadius: '5px',
+        width: '100%',
+        padding: '0px'
+    }
 }));
 
 const addRoomPaperProps = {
     style: {
-        backgroundColor: '#2e3136'
+        backgroundColor: '#36393f',
+        padding: '20px',
+        minWidth: '300px',
+        minHeight: '200px'
     }
 };
 
@@ -61,10 +87,18 @@ const AddRome = () => {
                 <AddBox />
             </IconButton>
             <Dialog open={addRoomOpen} onClose={closeRoomAdd} PaperProps={addRoomPaperProps}>
+                <DialogTitle className={classes.title}>Create New Room</DialogTitle>
                 <Paper className={classes.paper}>
                     <form onSubmit={createNewRoom} className={classes.form}>
-                        <TextField placeholder="Enter room name" onChange={(e) => setRoomName(e.target.value)} />
-                        <Button type="submit">create new room</Button>
+                        <TextField
+                            placeholder="Enter room name"
+                            onChange={(e) => setRoomName(e.target.value)}
+                            variant="outlined"
+                            className={classes.input}
+                        />
+                        <Button type="submit" className={classes.button}>
+                            create
+                        </Button>
                     </form>
                 </Paper>
             </Dialog>
