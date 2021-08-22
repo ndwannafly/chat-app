@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "name": "room"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "users": {
+      "via": "rooms",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "messages": {
+      "via": "room",
+      "collection": "message"
+    }
+  }
+}
